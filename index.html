@@ -1,4 +1,25 @@
- manish sharma knitpro 2026
+[200~pipeline {
+    agent any
 
+        stages {
+	        stage('Test') {
+		            steps {
+			                    sh '''
+					                    mkdir -p reports
+							                    cp test/test.html reports/report.html
+									                    '''
+											                }
+													        }
+														    }
 
- 2nd line
+														        post {
+															        always {
+																            publishHTML([
+																	                    reportDir: 'reports',
+																			                    reportFiles: 'report.html',
+																					                    reportName: 'HTML Test Report'
+																							                ])
+																									        }
+																										    }
+																										    }
+
